@@ -55,16 +55,18 @@ function forgottenPassword($atts) {
         </form>
     </div>';
 
+    function inloggenStart(e) {
+        e.preventDefault();
+        if (jQuery('#voorwaarden').is(':checked')) {
+            jQuery("#loginformulier").submit();
+        } else {
+            jQuery(".foutmelding.voorwaarden").fadeIn();
+        }
+    }
+    
     return $content;
 }
 
 add_shortcode('wachtwoordvergeten', 'forgottenPassword');
 
-function inloggenStart(e) {
-    e.preventDefault();
-    if (jQuery('#voorwaarden').is(':checked')) {
-        jQuery("#loginformulier").submit();
-    } else {
-        jQuery(".foutmelding.voorwaarden").fadeIn();
-    }
-}
+?>
