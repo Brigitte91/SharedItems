@@ -27,7 +27,21 @@ function loginForm($atts) {
             <input onclick="inloggenStart(event)" type="submit" value="Inloggen">
             <a href="https://www.rijologistics.nl/wachtwoord-vergeten/" class="wwlinkje">Wachtwoord vergeten? Klik hier</a>
         </form>
-    </div>';
+    </div>' . 
+// EDIT(1)
+	'
+	<script>
+    function inloggenStart(e) {
+        e.preventDefault();
+        if (jQuery("#voorwaarden").is(":checked")) {
+            jQuery("#loginformulier").submit();
+        } else {
+            jQuery(".foutmelding.voorwaarden").fadeIn();
+        }
+    }
+    </script>	
+	'	
+	;
 
     return $content;
 }
@@ -55,18 +69,9 @@ function forgottenPassword($atts) {
         </form>
     </div>';
 
-    function inloggenStart(e) {
-        e.preventDefault();
-        if (jQuery('#voorwaarden').is(':checked')) {
-            jQuery("#loginformulier").submit();
-        } else {
-            jQuery(".foutmelding.voorwaarden").fadeIn();
-        }
-    }
+
     
     return $content;
 }
 
 add_shortcode('wachtwoordvergeten', 'forgottenPassword');
-
-?>
